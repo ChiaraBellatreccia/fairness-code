@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "layer1"
+version = "0.1.0"
+description = "Three-layer fairness framework: inequality of burdens across population groups"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",    # metrics.py, sampling.py: arrays
+    "scipy>=1.15",    # metrics.py: scipy.special.xlogy; sampling.py: qmc.LatinHypercube(rng=...)
+    "pyarrow>=24.0",  # sampling.py, lorenz.py, metrics.py, visualize.py: parquet files
+    "psutil>=7.0",    # utils.py (used by every run summary): RAM usage
+    "tqdm>=4.67",     # sampling.py, lorenz.py, metrics.py: progress bar
+    "matplotlib>=3.10",  # visualize.py: figures
+    "pandas>=2.3",       # generate_*.py, plot_*.py, results/m1_reference: tables
+]
+
+[project.optional-dependencies]
+notebook = [
+    "ipykernel>=6.29",   # running the code from notebooks
+    "ipywidgets>=8.1",   # tqdm progress bar inside notebooks
+]
+
+[tool.setuptools]
+py-modules = ["utils", "metrics", "sampling", "lorenz", "visualize", "impact_function"]

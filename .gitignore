@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.parquet
+*.npz
+plots/
+results/*
+!results/seed42_K52_groups.csv
+!results/m1_reference/
+results/m1_reference/*
+!results/m1_reference/*.py
